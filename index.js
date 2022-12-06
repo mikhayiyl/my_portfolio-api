@@ -31,6 +31,7 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
+const port = process.env.PORT || config.get("port");
 const db = process.env.DB || config.get("db");
 
 mongoose
@@ -57,7 +58,6 @@ app.use("/api/conversations", conversations);
 
 
 
-const port = process.env.PORT || config.get("port");
 
 server.listen(port, () =>
   winston.info(`Listening on port ${port}...`)

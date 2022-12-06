@@ -30,7 +30,7 @@ const path = require("path");
 
 
 
-const db = config.get("db");
+const db = process.env.DB || config.get("db");
 
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })

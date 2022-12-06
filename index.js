@@ -27,8 +27,9 @@ const conversations = require("./routes/conversations");
 const messages = require("./routes/messages");
 const sharedPosts = require("./routes/sharedPosts");
 const path = require("path");
+const dotenv = require("dotenv");
 
-
+dotenv.config();
 
 const db = process.env.DB || config.get("db");
 

@@ -81,6 +81,8 @@ const userSchema = new mongoose.Schema(
 );
 
 userSchema.methods.generateAuthToken = function () {
+  const Key = process.env.KEY || config.get("jwtPrivateKey");
+
   return jwt.sign(
     {
       _id: this._id,
@@ -99,8 +101,7 @@ userSchema.methods.generateAuthToken = function () {
       from: this.from,
       relationship: this.relationship,
     },
-    config.get("jwtPrivateKey")
-  );
+    Key);
 };
 
 const User = mongoose.model("User", userSchema);

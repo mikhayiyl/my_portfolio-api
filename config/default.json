@@ -1,5 +1,4 @@
 {
   "db": "mongodb://localhost/portifolio-api",
-  "jwtPrivateKey": "",
-  "port": "3900"
+  "jwtPrivateKey": ""
 }

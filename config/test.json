@@ -1,0 +1,4 @@
+{
+  "db": "mongodb://localhost/portifolio-api-test",
+  "jwtPrivateKey": "123456"
+}

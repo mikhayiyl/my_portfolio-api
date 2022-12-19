@@ -1,0 +1,4 @@
+{
+  "db": "DATABASE",
+  "jwtPrivateKey": "SECURITY_KEY"
+}

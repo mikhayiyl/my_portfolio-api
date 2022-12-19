@@ -9,9 +9,17 @@ const messageSchema = new mongoose.Schema(
         sender: {
             type: String,
         },
+        recipient: {
+            type: String,
+        },
         text: {
             type: String,
         },
+
+        read: {
+            type: Boolean,
+            default: false,
+        }
 
 
     },
@@ -25,6 +33,7 @@ function validateMessage(Message) {
     const schema = {
         conversationId: Joi.objectId().required(),
         sender: Joi.objectId().required(),
+        recipient: Joi.objectId().required(),
         text: Joi.string().required(),
     };
     return Joi.validate(Message, schema);

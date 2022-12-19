@@ -6,6 +6,28 @@ const auth = require("../middleware/auth");
 
 
 
+//get  unread messages 
+
+router.get("/unread/:id", [auth, objId], async (req, res) => {
+    const messages = await Message.find({ read: false, recipient: req.params.id });
+
+    res.send(messages);
+});
+
+//total unread messages in a chat
+router.get("/unreadchats/:userId/:chatId", [auth], async (req, res) => {
+    const messages = await Message.find({ read: false, recipient: req.params.userId, conversationId: req.params.chatId });
+    res.send(messages);
+});
+
+
+//mark messages as read;
+
+router.put("/read/:id", [auth, objId], async (req, res) => {
+    const messages = await Message.updateMany({ read: false, recipient: req.params.id, sender: req.body.senderId }, { read: true });
+    res.send(messages);
+});
+
 //get messages by chatId
 
 router.get("/:id", [auth, objId], async (req, res) => {
@@ -14,8 +36,7 @@ router.get("/:id", [auth, objId], async (req, res) => {
             conversationId: req.params.id,
         }
     )
-    if (!messages)
-        return res.status(404).send("The messages with the given Id were not found");
+
     res.send(messages);
 });
 

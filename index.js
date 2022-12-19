@@ -5,7 +5,6 @@ const app = express();
 
 const port = process.env.PORT || 5000;
 
-
 require("./startups/config")();
 require("./startups/mongodb")();
 require("./startups/prod")(app);

@@ -15,7 +15,13 @@ const Project = mongoose.model('Project', new mongoose.Schema({
     required: true
   },
 
-  url: {
+  gitUrl: {
+    type: String,
+    required: true,
+    minlength: 5,
+    maxlength: 1024
+  },
+  projectUrl: {
     type: String,
     required: true,
     minlength: 5,
@@ -28,6 +34,14 @@ const Project = mongoose.model('Project', new mongoose.Schema({
   },
 
   features: {
+    type: Array,
+    default: []
+  },
+  rating: {
+    type: Number,
+    default: 1.5
+  },
+  technologies: {
     type: Array,
     default: []
   },
@@ -46,10 +60,12 @@ function validateProject(project) {
   const schema = {
     title: Joi.string().min(5).max(50).required(),
     genreId: Joi.objectId().required(),
-    url: Joi.string().max(255).required(),
-    description: Joi.string().max(255),
+    gitUrl: Joi.string().max(1000).required(),
+    projectUrl: Joi.string().max(100).required(),
+    description: Joi.string().max(255).required(),
     feature: Joi.string().max(255),
     image: Joi.string().max(255),
+    technology: Joi.string().max(255),
   };
 
   return Joi.validate(project, schema);

@@ -3,10 +3,11 @@ const Joi = require("joi");
 
 const rateSchema = new mongoose.Schema(
     {
-        userId: {
+        email: {
             type: String,
             required: true,
         },
+
         rate: {
             type: Number,
             required: true,
@@ -21,15 +22,17 @@ const rateSchema = new mongoose.Schema(
 
 const Rate = mongoose.model("Rate", rateSchema);
 
-const validateRate = (rate) => {
-    const schema = {
-        userId: Joi.objectId().required(),
-        rate: Joi.number(),
-        project: Joi.string(),
-    };
-    return Joi.validate(rate, schema);
 
+function validateRate(rate) {
+    const schema = {
+        project: Joi.string().required(),
+        email: Joi.string().required(),
+        rate: Joi.number().required(),
+    }
+
+    return Joi.validate(rate, schema);
 }
+
 
 module.exports.Rate = Rate;
 module.exports.validate = validateRate;

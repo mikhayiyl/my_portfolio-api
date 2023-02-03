@@ -3,23 +3,22 @@ const Joi = require("joi");
 
 const messageSchema = new mongoose.Schema(
     {
-        conversationId: {
+        username: {
             type: String,
+            required: true,
+
         },
-        sender: {
+        email: {
             type: String,
-        },
-        recipient: {
-            type: String,
+            required: true,
+
         },
         text: {
             type: String,
+            required: true,
+
         },
 
-        read: {
-            type: Boolean,
-            default: false,
-        }
 
 
     },
@@ -31,9 +30,8 @@ const Message = mongoose.model("Message", messageSchema);
 
 function validateMessage(Message) {
     const schema = {
-        conversationId: Joi.objectId().required(),
-        sender: Joi.objectId().required(),
-        recipient: Joi.objectId().required(),
+        username: Joi.string().required(),
+        email: Joi.string().required(),
         text: Joi.string().required(),
     };
     return Joi.validate(Message, schema);

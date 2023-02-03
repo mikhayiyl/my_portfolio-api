@@ -1,4 +1,6 @@
 {
-  "db": "DATABASE",
-  "jwtPrivateKey": "SECURITY_KEY"
+  "db": "MONGODB",
+  "jwtPrivateKey": "jwtPrivateKey",
+  "emailPassword":"emailPassword"
+
 }

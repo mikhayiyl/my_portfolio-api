@@ -8,6 +8,7 @@ const projects = require('../routes/projects');
 const ratings = require('../routes/ratings');
 const users = require('../routes/users');
 const skills = require('../routes/skills');
+const links = require('../routes/links');
 const errors = require('../middleware/error');
 
 
@@ -23,5 +24,6 @@ module.exports = function (app) {
   app.use('/api/ratings', ratings);
   app.use('/api/users', users);
   app.use('/api/skills', skills);
+  app.use('/api/links', links);
   app.use(errors);
 }

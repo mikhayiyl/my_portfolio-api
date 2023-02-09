@@ -62,17 +62,17 @@ router.put('/:id', [auth, objectId, validator(validate)], async (req, res) => {
 
     res.send(project);
 });
-router.put('/features/:id', [auth, objectId, validator(validate)], async (req, res) => {
+router.put('/features/:id', [auth, objectId], async (req, res) => {
     const project = await Project.findByIdAndUpdate(req.params.id, { $push: { features: req.body.feature } }, { new: true });
     if (!project) return res.status(404).send('The project with the given ID was not found.');
     res.send(project);
 });
-router.put('/images/:id', [auth, objectId, validator(validate)], async (req, res) => {
+router.put('/images/:id', [auth, objectId], async (req, res) => {
     const project = await Project.findByIdAndUpdate(req.params.id, { $push: { images: req.body.image } }, { new: true });
     if (!project) return res.status(404).send('The project with the given ID was not found.');
     res.send(project);
 });
-router.put('/technologies/:id', [auth, objectId, validator(validate)], async (req, res) => {
+router.put('/technologies/:id', [auth, objectId], async (req, res) => {
     const technology = await Project.findByIdAndUpdate(req.params.id, { $push: { technologies: req.body.technology } }, { new: true });
     if (!technology) return res.status(404).send('The technology with the given ID was not found.');
     res.send(technology);
